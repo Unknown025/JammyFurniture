@@ -36,7 +36,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="jammyfurniture", name="Jammy Furniture Mod", version="4.6")
+@Mod(modid="jammyfurniture", name="Jammy Furniture Mod", version="4.6", dependencies = "after:Aquaculture; after:BiomesOPlenty")
 public class JammyFurnitureModCore
 {
 	@Mod.Instance("jammyfurniture")
@@ -120,7 +120,7 @@ public class JammyFurnitureModCore
 		sofaPartCorner = new jfm_BlockSofaCorner("sofaCorner", 0, jfm_TileEntitySofaCorner.class).setHardness(1.2F);
 		miscBlocksOne = new jfm_BlockMiscOne("miscOne", 0, jfm_TileEntityMiscOne.class).setHardness(2.0F);
 		lightsOn = new jfm_BlockLightsOn("lightsOn", 0, jfm_TileEntityLightsOn.class, true).setHardness(0.3F);
-		//lightsOff = new jfm_BlockLightsOn("lightsOff", 0, jfm_TileEntityLightsOn.class, false).setHardness(0.3F);
+		lightsOff = new jfm_BlockLightsOn("lightsOff", 0, jfm_TileEntityLightsOn.class, false).setHardness(0.3F);
 	}
 
 	@EventHandler

@@ -33,7 +33,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 	public float lidAngle;
 	public float prevLidAngle;
 	public int numUsingPlayers;
-	
+/*	
 	public static String[] woodTools = { "item.pickaxeWood", "item.shovelWood", "item.hatchetWood", "item.hoeWood", "item.swordWood" };
 	public static String[] stoneTools = { "item.pickaxeStone", "item.shovelStone", "item.hatchetStone", "item.hoeStone", "item.swordStone" };
 	public static String[] ironTools = { "item.pickaxeIron", "item.shovelIron", "item.hatchetIron", "item.hoeIron", "item.swordIron" };
@@ -45,7 +45,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 	public static String[] goldenArmour = { "item.helmetGold", "item.chestplateGold", "item.leggingsGold", "item.bootsGold" };
 	public static String[] ironArmour = { "item.helmetIron", "item.chestplateIron", "item.leggingsIron", "item.bootsIron" };
 	public static String[] leatherArmour = { "item.helmetCloth", "item.chestplateCloth", "item.leggingsCloth", "item.bootsCloth" };
-
+*/
 	public jfm_TileEntityIronBlocksTwo()
 	{
 		this.wmItemStacks = new ItemStack[5];
@@ -317,42 +317,42 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 
 	public int getProgressSlot1(int par1)
 	{
-		return this.wmSlot1Time * par1 / getSmeltTime(0);
+		return this.wmSlot1Time * par1 / jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[0]);//getSmeltTime(0);
 	}
 
 	public int getProgressSlot2(int par1)
 	{
-		return this.wmSlot2Time * par1 / getSmeltTime(2);
+		return this.wmSlot2Time * par1 / jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[2]);//getSmeltTime(2);
 	}
 
 	public int getProgressSlot3(int par1)
 	{
-		return this.wmSlot3Time * par1 / getSmeltTime(3);
+		return this.wmSlot3Time * par1 / jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[3]);//getSmeltTime(3);
 	}
 
 	public int getProgressSlot4(int par1)
 	{
-		return this.wmSlot4Time * par1 / getSmeltTime(4);
+		return this.wmSlot4Time * par1 / jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[4]);//getSmeltTime(4);
 	}
 
 	public int dwGetProgressSlot1(int par1)
 	{
-		return this.dwSlot1Time * par1 / dwGetSmeltTime(0);
+		return this.dwSlot1Time * par1 / jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[0]);//dwGetSmeltTime(0);
 	}
 
 	public int dwGetProgressSlot2(int par1)
 	{
-		return this.dwSlot2Time * par1 / dwGetSmeltTime(2);
+		return this.dwSlot2Time * par1 / jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[2]);//dwGetSmeltTime(2);
 	}
 
 	public int dwGetProgressSlot3(int par1)
 	{
-		return this.dwSlot3Time * par1 / dwGetSmeltTime(3);
+		return this.dwSlot3Time * par1 / jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[3]);//dwGetSmeltTime(3);
 	}
 
 	public int dwGetProgressSlot4(int par1)
 	{
-		return this.dwSlot4Time * par1 / dwGetSmeltTime(4);
+		return this.dwSlot4Time * par1 / jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[4]);//dwGetSmeltTime(4);
 	}
 
 	public int getBurnTimeRemainingScaled(int par1)
@@ -466,7 +466,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (dwCanSmeltSlot(0) && dwIsBurning())
 				{
 					this.dwSlot1Time += 1;
-					if (this.dwSlot1Time == dwGetSmeltTime(0))
+					if (this.dwSlot1Time == jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[0]))
 					{
 						this.dwSlot1Time = 0;
 						dwFixArmourSlot(0);
@@ -480,7 +480,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (dwCanSmeltSlot(2) && dwIsBurning())
 				{
 					this.dwSlot2Time += 1;
-					if (this.dwSlot2Time == dwGetSmeltTime(2))
+					if (this.dwSlot2Time == jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[2]))
 					{
 						this.dwSlot2Time = 0;
 						dwFixArmourSlot(2);
@@ -494,7 +494,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (dwCanSmeltSlot(3) && dwIsBurning())
 				{
 					this.dwSlot3Time += 1;
-					if (this.dwSlot3Time == dwGetSmeltTime(3))
+					if (this.dwSlot3Time == jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[3]))
 					{
 						this.dwSlot3Time = 0;
 						dwFixArmourSlot(3);
@@ -508,7 +508,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (dwCanSmeltSlot(4) && dwIsBurning())
 				{
 					this.dwSlot4Time += 1;
-					if (this.dwSlot4Time == dwGetSmeltTime(4))
+					if (this.dwSlot4Time == jfm_DishwasherRecipes.smelting().getSmeltingTime(this.dwItemStacks[4]))
 					{
 						this.dwSlot4Time = 0;
 						dwFixArmourSlot(4);
@@ -568,7 +568,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (canSmeltSlot(0) && isBurning())
 				{
 					this.wmSlot1Time += 1;
-					if (this.wmSlot1Time == getSmeltTime(0))
+					if (this.wmSlot1Time == jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[0]))
 					{
 						this.wmSlot1Time = 0;
 						fixArmourSlot(0);
@@ -582,7 +582,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (canSmeltSlot(2) && isBurning())
 				{
 					this.wmSlot2Time += 1;
-					if (this.wmSlot2Time == getSmeltTime(2))
+					if (this.wmSlot2Time == jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[2]))
 					{
 						this.wmSlot2Time = 0;
 						fixArmourSlot(2);
@@ -596,7 +596,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (canSmeltSlot(3) && isBurning())
 				{
 					this.wmSlot3Time += 1;
-					if (this.wmSlot3Time == getSmeltTime(3))
+					if (this.wmSlot3Time == jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[3]))
 					{
 						this.wmSlot3Time = 0;
 						fixArmourSlot(3);
@@ -610,7 +610,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 				if (canSmeltSlot(4) && isBurning())
 				{
 					this.wmSlot4Time += 1;
-					if (this.wmSlot4Time == getSmeltTime(4))
+					if (this.wmSlot4Time == jfm_WashingMachineRecipes.smelting().getSmeltingTime(this.wmItemStacks[4]))
 					{
 						this.wmSlot4Time = 0;
 						fixArmourSlot(4);
@@ -628,7 +628,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 			}
 		}
 	}
-
+/*
 	public int dwGetSmeltTime(int slot)
 	{
 		int time = 10000;
@@ -673,7 +673,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 		}
 		return time;
 	}
-
+*/
 	private boolean dwCanSmeltSlot(int slot)
 	{
 		if (this.dwItemStacks[slot] == null)
@@ -681,11 +681,11 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 			return false;
 		}
 		ItemStack itemstack = jfm_DishwasherRecipes.smelting().getSmeltingResult(this.dwItemStacks[slot]);
-		if (this.dwItemStacks[slot].getItemDamageForDisplay() == 0)
+		if (itemstack == null)
 		{
 			return false;
-		}
-		if (itemstack == null)
+		}		
+		if (this.dwItemStacks[slot].getItemDamageForDisplay() == 0)
 		{
 			return false;
 		}
@@ -707,7 +707,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 			this.dwItemStacks[slot].setItemDamage(0);
 		}
 	}
-
+/*
 	public int getSmeltTime(int slot)
 	{
 		int time = 10000;
@@ -752,7 +752,7 @@ public class jfm_TileEntityIronBlocksTwo extends TileEntity implements IInventor
 		}
 		return time;
 	}
-
+*/
 	private boolean canSmeltSlot(int slot)
 	{
 		if (this.wmItemStacks[slot] == null)

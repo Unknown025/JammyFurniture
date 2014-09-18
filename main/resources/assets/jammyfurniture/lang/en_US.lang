@@ -93,4 +93,6 @@ tile.miscOne.ChristmasTree.name=Christmas Tree
 tile.lightsOn.light.name=Light
 tile.lightsOn.OutsideLamp.name=Outdoor Lamp
 tile.lightsOn.TableLamp.name=Table Lamp
-
+tile.lightsOff.light.name=Light
+tile.lightsOff.OutsideLamp.name=Outdoor Lamp
+tile.lightsOff.TableLamp.name=Table Lamp

@@ -53,22 +53,28 @@ public class jfm_ContainerWashingMachine extends Container
 		for (int i = 0; i < this.crafters.size(); i++)
 		{
 			ICrafting icrafting = (ICrafting)this.crafters.get(i);
-			if (this.wmSlot1Time != this.washingMachine.wmSlot1Time) {
+			if (this.wmSlot1Time != this.washingMachine.wmSlot1Time)
+			{
 				icrafting.sendProgressBarUpdate(this, 0, this.washingMachine.wmSlot1Time);
 			}
-			if (this.wmSlot2Time != this.washingMachine.wmSlot2Time) {
+			if (this.wmSlot2Time != this.washingMachine.wmSlot2Time)
+			{
 				icrafting.sendProgressBarUpdate(this, 1, this.washingMachine.wmSlot2Time);
 			}
-			if (this.wmSlot3Time != this.washingMachine.wmSlot3Time) {
+			if (this.wmSlot3Time != this.washingMachine.wmSlot3Time)
+			{
 				icrafting.sendProgressBarUpdate(this, 2, this.washingMachine.wmSlot3Time);
 			}
-			if (this.wmSlot4Time != this.washingMachine.wmSlot4Time) {
+			if (this.wmSlot4Time != this.washingMachine.wmSlot4Time)
+			{
 				icrafting.sendProgressBarUpdate(this, 3, this.washingMachine.wmSlot4Time);
 			}
-			if (this.BurnTime != this.washingMachine.wmBurnTime) {
+			if (this.BurnTime != this.washingMachine.wmBurnTime)
+			{
 				icrafting.sendProgressBarUpdate(this, 4, this.washingMachine.wmBurnTime);
 			}
-			if (this.ItemBurnTime != this.washingMachine.currentItemBurnTime) {
+			if (this.ItemBurnTime != this.washingMachine.currentItemBurnTime)
+			{
 				icrafting.sendProgressBarUpdate(this, 5, this.washingMachine.currentItemBurnTime);
 			}
 		}
@@ -83,23 +89,26 @@ public class jfm_ContainerWashingMachine extends Container
 	@Override
 	public void updateProgressBar(int i, int j)
 	{
-		if (i == 0) {
+		switch (i)
+		{
+		case 0:
 			this.washingMachine.wmSlot1Time = j;
-		}
-		if (i == 1) {
+			break;
+		case 1:
 			this.washingMachine.wmSlot2Time = j;
-		}
-		if (i == 2) {
+			break;
+		case 2:
 			this.washingMachine.wmSlot3Time = j;
-		}
-		if (i == 3) {
+			break;			
+		case 3:
 			this.washingMachine.wmSlot4Time = j;
-		}
-		if (i == 4) {
+			break;			
+		case 4:
 			this.washingMachine.wmBurnTime = j;
-		}
-		if (i == 5) {
+			break;			
+		case 5:
 			this.washingMachine.currentItemBurnTime = j;
+			break;			
 		}
 	}
 
@@ -110,9 +119,39 @@ public class jfm_ContainerWashingMachine extends Container
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer pl, int i)
+	public final ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIndex)
 	{
-		return null;
+		ItemStack itemstack = null;
+		Slot slot = (Slot)this.inventorySlots.get(sourceSlotIndex);
+
+		if (slot != null && slot.getHasStack())
+		{
+			ItemStack itemstack1 = slot.getStack();
+			itemstack = itemstack1.copy();
+
+			if (sourceSlotIndex < 5)
+			{
+				if (!this.mergeItemStack(itemstack1, 5, this.inventorySlots.size(), true))
+				{
+					return null;
+				}
+			}
+			else if (!this.mergeItemStack(itemstack1, 0, 5, false))
+			{
+				return null;
+			}
+
+			if (itemstack1.stackSize == 0)
+			{
+				slot.putStack(null);
+			}
+			else
+			{
+				slot.onSlotChanged();
+			}
+		}
+
+		return itemstack;
 	}
 
 	@Override
