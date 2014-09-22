@@ -96,3 +96,15 @@ tile.lightsOn.TableLamp.name=Table Lamp
 tile.lightsOff.light.name=Light
 tile.lightsOff.OutsideLamp.name=Outdoor Lamp
 tile.lightsOff.TableLamp.name=Table Lamp
+
+info.midday=midday.
+info.near_midday=nearly midday.
+info.near_sundown=nearly sundown.
+info.sundown=sundown.
+info.to_midnight=coming up to midnight.
+info.midnight=midnight, I wouldn't go outside if I were you!
+info.near_morning=nearly morning.
+info.morning=morning.
+info.time=The Time is currently: %s 
+info.it=It's %s
+

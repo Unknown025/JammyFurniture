@@ -22,8 +22,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class jfm_WoodBlocksOne extends BlockContainer
@@ -111,7 +113,7 @@ public class jfm_WoodBlocksOne extends BlockContainer
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
 		int l = (MathHelper.floor_double(entityplayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3) % 4;
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-		if (meta == 1 || meta == 2 || meta == 3 || meta == 4)
+		if (1 <= meta && meta <= 4)
 		{
 			if ((itemstack != null && itemstack.getItemDamage() == 5) ||
 				(itemstack != null && itemstack.getItemDamage() == 6) ||
@@ -129,7 +131,7 @@ public class jfm_WoodBlocksOne extends BlockContainer
 		}
 		else
 		{
-			if (meta == 5 || meta == 6 || meta == 7 || meta == 8)
+			if (5 <= meta && meta <= 8)
 			{
 				if (par1World.isRemote)
 				{
@@ -140,53 +142,52 @@ public class jfm_WoodBlocksOne extends BlockContainer
 				String message = "";
 				if (time == 0)
 				{
-					message = "midday.";
+					message = StatCollector.translateToLocal("info.midday");
 				}
 				if (time >= 90 && time <= 10)
 				{
-					message = "nearly midday.";
+					message = StatCollector.translateToLocal("info.near_midday");
 				}
 				if (time >= 11 && time <= 21)
 				{
-					message = "nearly sundown.";
+					message = StatCollector.translateToLocal("info.near_sundown");
 				}
 				if (time == 22)
 				{
-					message = "sundown.";
+					message = StatCollector.translateToLocal("info.sundown");
 				}
 				if (time >= 41 && time <= 49)
 				{
-					message = "coming up to midnight.";
+					message = StatCollector.translateToLocal("info.to_midnight");
 				}
 				if (time == 50)
 				{
-					message = "midnight, I wouldn't go outside if I were you!";
+					message = StatCollector.translateToLocal("info.midnight");
 				}
 				if (time >= 55 && time <= 69)
 				{
-					message = "nearly morning.";
+					message = StatCollector.translateToLocal("info.near_morning");
 				}
 				if (time >= 70 && time <= 89)
 				{
-					message = "morning.";
+					message = StatCollector.translateToLocal("info.morning");
 				}
+				time = (int)((FMLClientHandler.instance().getClient().theWorld.getWorldTime() + 6000) % 24000);
+				int hours = time / 1000;
+				int minutes = (time % 1000) * 6 / 100;
+				entityplayer.addChatMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("info.time"), String.format("%02d:%02d", hours, minutes))));				
 				if (message != "")
 				{
-					entityplayer.addChatMessage(new ChatComponentText("The Time is currently: " + time));
-					entityplayer.addChatMessage(new ChatComponentText("It's " + message));
+					entityplayer.addChatMessage(new ChatComponentText(String.format(StatCollector.translateToLocal("info.it"), message)));
 				}
-				else
-				{
-					entityplayer.addChatMessage(new ChatComponentText("The Time is currently: " + time));
-				}
-				if (itemstack != null && itemstack.getItem() == Items.book)
+				/*if (itemstack != null && itemstack.getItem() == Items.book)
 				{
 					entityplayer.addChatMessage(new ChatComponentText("---- Information ----"));
 					entityplayer.addChatMessage(new ChatComponentText("There are 100 hours from midday to midnight."));
 					entityplayer.addChatMessage(new ChatComponentText("The time resets to 0 at midday."));
 					entityplayer.addChatMessage(new ChatComponentText("When the time is 50, it is midnight."));
 					entityplayer.addChatMessage(new ChatComponentText("---- End Information ----"));
-				}
+				}*/
 				return true;
 			}
 			if (meta == 9)
