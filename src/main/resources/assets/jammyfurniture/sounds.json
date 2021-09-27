@@ -1,0 +1,11 @@
+{
+  "washingmachine": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "washingmachine",
+        "stream": false
+      }
+    ]
+  }
+}

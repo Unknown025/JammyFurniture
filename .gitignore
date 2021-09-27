@@ -1,0 +1,29 @@
+# Build and Bins
+.gradle/
+build/
+bin/
+out/
+run/*
+classes/
+
+# IDEs
+.classpath
+.project
+.settings/
+.idea/
+
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# System
+Thumbs.db
+.DS_Store
+
+# Gradle
+gradle.properties
+
+# Minecraft
+eclipse/*
+!eclipse/DivisionGuardAssets
